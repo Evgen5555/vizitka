@@ -21,6 +21,7 @@
             color: white;
             font-family: 'Montserrat', sans-serif;
             height: 100%;
+            overflow-x: hidden;
         }
 
         #particles-js {
@@ -38,6 +39,7 @@
             z-index: 10; 
             display: flex;
             height: 100vh;
+            min-height: 100dvh;
             width: 100%;
         }
 
@@ -214,15 +216,15 @@
         }
 
         .a-1 { animation-delay: 0.4s; }
-        .a-2 { animation-delay: 0.95s; }
-        .a-3 { animation-delay: 1.55s; }
-        .a-4 { animation-delay: 2.15s; }
+        .a-2 { animation-delay: 0.65s; }
+        .a-3 { animation-delay: 0.95s; }
+        .a-4 { animation-delay: 1.25s; }
 
         .after-typing {
             opacity: 0;
             transform: translateY(16px);
             filter: blur(1px);
-            transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+            transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease;
         }
 
         .after-typing.show {
@@ -310,9 +312,66 @@
         }
 
         @media (max-width: 640px) {
+            :root {
+                --cta-btn-width: 100%;
+                --cta-main-width: 100%;
+            }
+
+            .main-wrapper {
+                min-height: auto;
+            }
+
+            .photo-side {
+                min-height: 34vh;
+                padding: 1rem 0.75rem 0.35rem;
+            }
+
+            .photo-stack {
+                width: min(92vw, 430px);
+            }
+
             .frame-container {
                 margin: 0.75rem;
-                padding: 1.5rem 1rem 4.5rem;
+                padding: 1.35rem 1rem 4rem;
+                align-items: center;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: clamp(1.65rem, 8.5vw, 2.25rem);
+                line-height: 1.15;
+            }
+
+            #introTyping {
+                font-size: 1rem;
+                line-height: 1.6;
+            }
+
+            .space-y-8 p {
+                font-size: 0.95rem;
+                line-height: 1.55;
+            }
+
+            .frame-container .max-w-md {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .cta-line {
+                margin: 0.75rem;
+                padding: 0 0.25rem 0.5rem;
+            }
+
+            .cta-left,
+            .cta-right {
+                justify-content: center;
+            }
+
+            .cta-line .btn {
+                font-size: 10px;
+                letter-spacing: 0.12em;
+                padding-top: 0.78rem;
+                padding-bottom: 0.78rem;
             }
         }
     </style>
@@ -456,8 +515,8 @@
 
             intro.textContent = "";
             let index = 0;
-            const typingSpeed = 42;
-            const typingStartDelay = 1300;
+            const typingSpeed = 22;
+            const typingStartDelay = 550;
 
             const startTyping = () => {
                 const timer = setInterval(() => {
@@ -468,7 +527,7 @@
                         clearInterval(timer);
                         intro.innerHTML = finalHtml;
                         revealBlocks.forEach((el, i) => {
-                            setTimeout(() => el.classList.add("show"), i * 300);
+                            setTimeout(() => el.classList.add("show"), i * 120);
                         });
                     }
                 }, typingSpeed);
@@ -477,13 +536,15 @@
             setTimeout(startTyping, typingStartDelay);
         })();
 
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 150, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": isMobile ? 70 : 150, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#D4AF37" },
-                "opacity": { "value": 0.8, "random": true },
-                "size": { "value": 3, "random": true },
-                "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "out_mode": "out" }
+                "opacity": { "value": isMobile ? 0.55 : 0.8, "random": true },
+                "size": { "value": isMobile ? 2.2 : 3, "random": true },
+                "move": { "enable": true, "speed": isMobile ? 1 : 1.5, "direction": "none", "random": true, "out_mode": "out" }
             }
         });
     </script>
