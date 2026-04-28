@@ -38,8 +38,8 @@
             position: relative;
             z-index: 10; 
             display: flex;
-            height: 100vh;
-            min-height: 100dvh;
+            height: calc(100vh - 8rem);
+            min-height: calc(100dvh - 8rem);
             width: 100%;
         }
 
@@ -70,12 +70,11 @@
         }
 
         .cta-line {
-            position: absolute;
-            left: 2rem;
-            right: 2rem;
-            bottom: 2.8rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            position: relative;
+            margin: 1.25rem 2rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.85rem;
             align-items: center;
             z-index: 20;
         }
@@ -103,6 +102,38 @@
             text-align: center;
         }
 
+        .ticker-wrap {
+            position: relative;
+            margin-top: 2rem;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            z-index: 20;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.55rem 0;
+        }
+
+        .ticker-track {
+            display: inline-flex;
+            align-items: center;
+            gap: 2rem;
+            min-width: max-content;
+            animation: tickerMove 16s linear infinite;
+        }
+
+        .ticker-item {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        @keyframes tickerMove {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
         .cta-main-btn {
             width: var(--cta-main-width) !important;
             min-width: var(--cta-main-width) !important;
@@ -115,30 +146,34 @@
             flex-direction: column;
         }
 
-        /* Рамка без верхней навигации и без низа */
+        /* Квадратная рамка для правого текстового блока */
         .frame-container {
             position: absolute;
             top: 2rem;
             left: 2rem;
             right: 2rem;
-            bottom: 0; 
-            border-left: 1px solid rgba(255, 255, 255, 0.3);
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
-            border-right: 1px solid rgba(255, 255, 255, 0.3);
-            background: rgba(0, 0, 0, 0.1); 
-            backdrop-filter: blur(2px);
-            padding: 4rem 3rem;
+            bottom: 2rem; 
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: transparent;
+            backdrop-filter: none;
+            padding: 2.8rem 3rem 4rem;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            align-items: flex-start;
-            text-align: left;
+            align-items: center;
+            text-align: center;
         }
 
         .frame-container .space-y-12 {
             width: 100%;
-            max-width: 900px;
-            margin: 0;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .frame-container .space-y-8 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .frame-container .max-w-md {
@@ -155,8 +190,18 @@
         }
 
         .hero-title {
-            font-size: clamp(2rem, 3.3vw, 3.9rem);
-            line-height: 1.08;
+            font-size: clamp(2rem, 3.1vw, 3.5rem);
+            line-height: 1.1;
+        }
+
+        .frame-container #introTyping {
+            font-size: clamp(1.1rem, 1.8vw, 1.75rem) !important;
+            line-height: 1.55;
+        }
+
+        .frame-container .space-y-8 p {
+            font-size: clamp(1rem, 1.45vw, 1.4rem) !important;
+            line-height: 1.5;
         }
 
         .hero-title .gold-text {
@@ -276,6 +321,10 @@
                 align-items: stretch;
             }
 
+            .ticker-wrap {
+                margin-top: 1.4rem;
+            }
+
             .cta-left,
             .cta-right {
                 width: 100%;
@@ -326,7 +375,7 @@
             }
 
             .photo-side {
-                min-height: 34vh;
+                min-height: 28vh;
                 padding: 1rem 0.75rem 0.35rem;
             }
 
@@ -335,47 +384,61 @@
             }
 
             .frame-container {
-                margin: 0.75rem;
-                padding: 1.35rem 1rem 4rem;
+                margin: 0.6rem;
+                padding: 1.15rem 0.85rem 1.6rem;
                 align-items: center;
                 text-align: center;
             }
 
             .hero-title {
-                font-size: clamp(1.65rem, 8.5vw, 2.25rem);
-                line-height: 1.15;
+                font-size: clamp(1.5rem, 7.1vw, 2rem);
+                line-height: 1.13;
             }
 
-            #introTyping {
-                font-size: 1rem;
-                line-height: 1.6;
+            .frame-container #introTyping {
+                font-size: clamp(0.96rem, 4.2vw, 1.05rem) !important;
+                line-height: 1.5;
             }
 
-            .space-y-8 p {
-                font-size: 0.95rem;
-                line-height: 1.55;
+            .frame-container .space-y-8 p {
+                font-size: clamp(0.9rem, 3.9vw, 1rem) !important;
+                line-height: 1.48;
             }
 
             .frame-container .max-w-md {
                 margin-left: auto;
                 margin-right: auto;
+                border-left: 0 !important;
+                padding-left: 0 !important;
             }
 
             .cta-line {
-                margin: 0.75rem;
-                padding: 0 0.25rem 0.5rem;
+                margin: 0.6rem;
+                padding: 0 0 0.45rem;
+                gap: 0.6rem;
+            }
+
+            .ticker-wrap {
+                margin-top: 1rem;
+                padding: 0.4rem 0;
+            }
+
+            .ticker-item {
+                font-size: 0.72rem;
+                letter-spacing: 0.06em;
             }
 
             .cta-left,
             .cta-right {
                 justify-content: center;
+                gap: 0.6rem;
             }
 
             .cta-line .btn {
-                font-size: 10px;
-                letter-spacing: 0.12em;
-                padding-top: 0.78rem;
-                padding-bottom: 0.78rem;
+                font-size: 11px;
+                letter-spacing: 0.08em;
+                padding-top: 0.72rem;
+                padding-bottom: 0.72rem;
             }
         }
     </style>
@@ -413,30 +476,38 @@
                     </div>
 
                 </div>
+                <div class="ticker-wrap hero-animate a-1" aria-label="Бегущая строка услуг">
+                    <div class="ticker-track">
+                        <span class="ticker-item">нейрофотосессии</span>
+                        <span class="ticker-item">AI-видео</span>
+                        <span class="ticker-item">Вайб-кодинг</span>
+                        <span class="ticker-item">нейрофотосессии</span>
+                        <span class="ticker-item">AI-видео</span>
+                        <span class="ticker-item">Вайб-кодинг</span>
+                    </div>
+                </div>
 
-            </div>
-        </div>
-
-        <div class="cta-line">
-            <div class="cta-left hero-animate a-1">
-                <a href="https://evgen5555.github.io/quiz/" target="_blank" class="btn btn-primary text-white rounded-full font-bold uppercase tracking-widest text-[11px]">
-                    Посмотреть проект
-                </a>
-                <a href="https://vk.com/neuro_evgeniya_k" target="_blank" class="btn btn-secondary text-white rounded-full font-bold uppercase tracking-widest text-[11px]">
-                    Написать в контакте
-                </a>
-            </div>
-            <div class="cta-right after-typing">
-                <a href="https://petal-posh-moscow.lovable.app" target="_blank" class="btn btn-secondary text-white rounded-full font-bold uppercase tracking-widest text-[11px]">
-                    Разработка сайта
-                </a>
-                <a href="https://t.me/evgeniya5_5" target="_blank" class="btn btn-secondary text-white rounded-full font-bold uppercase tracking-widest text-[11px]">
-                    Написать в телеграм
-                </a>
             </div>
         </div>
     </div>
-
+    <div class="cta-line">
+        <div class="cta-left hero-animate a-1">
+            <a href="https://evgen5555.github.io/quiz/" target="_blank" class="btn btn-primary text-white rounded-full font-bold uppercase tracking-widest text-[11px]">
+                Посмотреть проект
+            </a>
+            <a href="https://vk.com/neuro_evgeniya_k" target="_blank" class="btn btn-secondary text-white rounded-full font-bold uppercase tracking-widest text-[11px]">
+                Написать в контакте
+            </a>
+        </div>
+        <div class="cta-right hero-animate a-1">
+            <a href="https://petal-posh-moscow.lovable.app" target="_blank" class="btn btn-secondary text-white rounded-full font-bold uppercase tracking-widest text-[11px]">
+                Разработка сайта
+            </a>
+            <a href="https://t.me/evgeniya5_5" target="_blank" class="btn btn-secondary text-white rounded-full font-bold uppercase tracking-widest text-[11px]">
+                Написать в телеграм
+            </a>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         (function cleanPhotoEdges() {
